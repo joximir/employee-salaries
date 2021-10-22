@@ -29,6 +29,8 @@ h1 {
     margin: 0;
     padding-top: 30px;
     width: 100%;
+    cursor: pointer;
+    user-select: none;
 }
 
 form {
@@ -46,6 +48,7 @@ input[type="text"],
 select {
     height: 1.2rem;
     font-size: .8rem;
+    cursor: pointer;
 }
 input:focus::placeholder {
     color: transparent;
@@ -64,6 +67,7 @@ input[type="submit"] {
     color: var(--color-light);
     border: none;
     border-radius: .3em;
+    cursor: pointer;
 }
 
 table {

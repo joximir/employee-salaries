@@ -11,17 +11,18 @@ const db = mysql.createPool({
     database: process.env.DB_DATABASE
 })
 
-app.use(express.static('public'))
+app.use('/', express.static('public'))
 
 app.post('/api/intro', multer().none(), (req, res)=>{
     const keys = Object.keys(req.body).join(",")
     const values = Object.values(req.body).join("','")
     db.query(`INSERT INTO employees (${keys}) VALUES ('${values}')`, (error, _) => {
         if (error) {
-            console.log(error.sqlMessage)
-            res.sendStatus(500)
+            console.error(error.sqlMessage)
+            res.sendStatus(500).send(error.sqlMessage)
         }
         else {
+            console.log('New introduction added!')
             db.query('SELECT DISTINCT company FROM employees', (err, companies) => {
                 if (err) throw err
                 res.send(companies.map(obj => obj.company))               
@@ -32,12 +33,12 @@ app.post('/api/intro', multer().none(), (req, res)=>{
 
 app.get('/api/companies/:company', (req, res) => {
     const pickedCompany = req.params.company.replace(/_/g, ' ')
-    console.log(pickedCompany)
+    console.log(`${pickedCompany} data requested!`)
     db.query(`SELECT * FROM employees WHERE company = '${pickedCompany}'`, 
     (err, rows) => {
         if (err) {
             console.error(err.sqlMessage)
-            res.sendStatus(500)
+            res.sendStatus(500).send(err.sqlMessage)
         }
         else {
             res.send(rows.map(({id, company, ...rest}) => rest))

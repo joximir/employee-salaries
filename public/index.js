@@ -2,6 +2,9 @@ const mainElement = document.getElementById('main')
 const promptElement = document.getElementById('prompt')
 
 let companies = null 
+
+document.getElementById('title').addEventListener('click', () => location.reload(true))
+
 document.addEventListener('submit', async event => {
     event.preventDefault()
 
@@ -26,10 +29,9 @@ document.addEventListener('input', async event => {
 
     const selected = event.target.selectedOptions[0].value.replace(/ +/g, '_')
     const response = await fetch(`/api/companies/${selected}`)
-    const pickedCompany = await response.json()
-    showCompanyTable(pickedCompany)
+    const companyData = await response.json()
+    showCompanyTable(selected, companyData)
 })
-
 
 function showCompanyPicker() {
     promptElement.innerText = 'Your introduction is sent successfully! \nSelect the company you are interested in.'
@@ -48,9 +50,9 @@ function showCompanyPicker() {
     mainElement.appendChild(picker)
 }
 
-function showCompanyTable(data) {
+function showCompanyTable(name, data) {
     promptElement.innerText = 
-        `Salary Insiders data on ${data[0].company} is shown in the table below`
+        `Salary Insiders data on ${name} is shown in the table below`
 
     const table = document.createElement('table')
     const thead = table.createTHead().insertRow()
@@ -77,3 +79,4 @@ function showCompanyTable(data) {
     })
     mainElement.appendChild(backButton)
 }
+
