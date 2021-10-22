@@ -6,7 +6,7 @@ document.addEventListener('submit', async event => {
     event.preventDefault()
 
     const introForm = document.forms['introForm']
-    let response = await fetch('http://localhost:1312/api/intro', {
+    let response = await fetch('https://employee-salaries.herokuapp.com/api/intro', {
         method: 'post',
         body: new FormData(introForm) 
     })
@@ -25,7 +25,7 @@ document.addEventListener('input', async event => {
     if (event.target.id != 'companies') return
 
     const selected = event.target.selectedOptions[0].value.replace(/ +/g, '_')
-    const response = await fetch(`http://localhost:1312/api/companies/${selected}`)
+    const response = await fetch(`https://employee-salaries.herokuapp.com/api/companies/${selected}`)
     const pickedCompany = await response.json()
     showCompanyTable(pickedCompany)
 })
