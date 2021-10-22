@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Salary Insider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Salary Insider</h1>
+    <p id="prompt">
+        Hello and welcome!</br>
+        Please introduce yourself to see salary reports for companies.
+    </p>
+    <div id="main">
+        <form id="introForm">
+            <label for="name">
+                <strong>Name:</strong>
+                <input type="text" name="name" placeholder="Name" required>
+            </label>    
+            <label for="job">
+                <strong>Job:</strong>
+                <input type="text" name="job" placeholder="Job Title" required>
+            </label>
+            <label for="company">
+                <strong>Company:</strong>
+                <input type="text" name="company" placeholder="Company" required>
+            </label>    
+            <label for="salary">
+                <strong>Salary:</strong>
+                <input type="number" name="salary" placeholder="Annual Salary in USD" required>
+            </label>  
+            <input type="submit" value="Send Introduction" class="button">
+        </form>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

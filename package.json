@@ -1,0 +1,18 @@
+{
+  "name": "employee-salaries",
+  "version": "1.0.0",
+  "description": "Simple Express.js app that lets users submit their salary to database in order to get others data from database.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Dusan Jovicic",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.3",
+    "mysql": "^2.18.1"
+  }
+}
